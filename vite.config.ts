@@ -7,6 +7,7 @@ import legacy from "@vitejs/plugin-legacy";
 import svgr from "vite-plugin-svgr";
 import UnoCSS from 'unocss/vite';
 import Asc from 'vite-plugin-asc'
+import * as path from "node:path";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -15,7 +16,11 @@ export default defineConfig({
     server: {
         open: false,
     },
-    resolve: {},
+    resolve: {
+        alias: {
+          "@": path.resolve(__dirname, "./src"),
+        }
+      },
     worker: {
         format: "es",
     },
