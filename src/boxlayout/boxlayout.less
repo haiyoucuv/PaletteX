@@ -1,0 +1,146 @@
+.boxlayout {
+
+    .tabbar-option-container {
+        cursor: pointer;
+        margin: 6px;
+    }
+
+    // tab icon样式
+    .tabbar-item-icon {
+        width: 16px;
+    }
+
+    // 面板组之间的分割线
+    .split-line {
+        background-color: #282828;
+    }
+
+    // 面板标题栏
+    .tabbar {
+        background-color: #3b3b3b;
+        user-select: none;
+    }
+
+    // 面板标题栏标题项
+    .tabbar-item {
+        box-sizing: border-box;
+        cursor: move;
+        align-items: center !important;
+        border-color: #282828;
+        border-style: solid;
+        border-left-width: 0;
+        border-right-width: 1px;
+        border-top-width: 0;
+        border-bottom-width: 1px;
+    }
+
+    .tabbar-item .close-btn {
+        visibility: hidden !important;
+    }
+
+
+    .tabbar-item.tabbar-item-mouseenter .close-btn,
+    .tabbar-item.tabbar-item-selected .close-btn {
+        visibility: visible !important
+    }
+
+    // 面板标题栏标题项：焦点
+    .tabbar-item.tabbar-item-focus {
+        background-color: #313e4c;
+    }
+
+    // 面板标题栏标题项：选中
+    .tabbar-item.tabbar-item-selected {
+        background-color: #444444;
+        border-bottom-width: 0 !important;
+    }
+
+    // 面板标题栏标题字体
+    .tabbar-item-title {
+        font-size: 13px;
+        color: #888888
+    }
+
+    // 面板标题栏标题字体：焦点
+    .tabbar-item-title.tabbar-item-title-focus {
+        color: #f0f0f0
+    }
+
+    // 面板标题栏标题字体：选中
+    .tabbar-item-title.tabbar-item-title-selected {
+        color: #f0f0f0
+    }
+
+    // 面板
+    .tab-panel {
+        background: #3b3b3b !important;
+        box-sizing: border-box;
+        border: 2px solid #444444;
+        color: #f0f0f0;
+    }
+
+    // 面板：焦点
+    .tab-panel.tab-panel-focus {
+        border: 2px solid #505050;
+    }
+
+    .document-group .babbar-item {
+        border-right-width: 0 !important;
+        border-bottom-width: 1px !important;
+    }
+
+    .document-group .tabbar-item.tabbar-item-selected {
+        border-right-width: 1px !important;
+        border-bottom-width: 0 !important;
+    }
+
+    .document-group .split-line {
+        background: #282828 url("./egret_icon.png") no-repeat center center;
+    }
+
+    .title {
+        user-select: none;
+        background-color: #3b3b3b !important;
+        align-items: stretch !important;
+        border-width: 0 !important;
+    }
+
+    .tabbar-item-container {
+        border-width: 0 !important;
+        height: 100%;
+    }
+
+    .tabbar-item-remain-container {
+        height: 100%;
+        border-color: #282828;
+        border-style: solid;
+        border-left-width: 0;
+        border-right-width: 0;
+        border-top-width: 0;
+        border-bottom-width: 1px;
+    }
+
+    .tabbar-append-container {
+        display: flex;
+        align-items: center;
+        border-color: #282828 !important;
+        border-style: solid;
+        border-left-width: 0 !important;
+        border-right-width: 0 !important;
+        border-top-width: 0 !important;
+        border-bottom-width: 1px !important;
+        height: 100%;
+    }
+
+}
+
+
+// 拖拽样式
+.drag-element {
+    background: rgba(0, 255, 72, 0.2);
+    border: 2px solid rgba(47, 255, 0, 0.46)
+}
+
+
+
+

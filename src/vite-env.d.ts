@@ -19,8 +19,3 @@ declare module "*.ts?asc" {
     const content: () => Promise<{ exports: Record<string, (...args: any[]) => any> }>;
     export default content
 }
-
-
-declare module 'react' {
-    interface HTMLAttributes<T> extends AttributifyAttributes {}
-}
