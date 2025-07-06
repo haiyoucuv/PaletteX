@@ -1,6 +1,8 @@
+import { tr } from "motion/react-client";
+
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
-        ({__proto__: []} instanceof Array && function (d, b) {
+        ({ __proto__: [] } instanceof Array && function (d, b) {
             d.__proto__ = b;
         }) ||
         function (d, b) {
@@ -997,19 +999,19 @@ export var BoxLayout = /** @class */ (function (_super) {
             if (element instanceof BoxLayoutContainer) {
                 config["type"] = "BoxLayoutContainer";
                 config["isVertical"] = element.isVertical;
-                config["bounds"] = {x: element.x, y: element.y, width: element.width, height: element.height};
+                config["bounds"] = { x: element.x, y: element.y, width: element.width, height: element.height };
                 config["firstElement"] = getConfig(element.firstElement);
                 config["secondElement"] = getConfig(element.secondElement);
             } else if (element instanceof DocumentElement) {
                 config["type"] = "DocumentElement";
-                config["bounds"] = {x: element.x, y: element.y, width: element.width, height: element.height};
+                config["bounds"] = { x: element.x, y: element.y, width: element.width, height: element.height };
                 var documentLayout = element.render.layout;
                 //将外部布局配置的documentPanelSerialize赋值给文档布局的panelSerialize，完成文档区域面板的序列化
                 documentLayout.config.panelSerialize = _this.config.documentPanelSerialize;
                 config['layoutInfo'] = documentLayout.getLayoutConfig();
             } else {
                 config["type"] = "BoxLayoutElement";
-                config["bounds"] = {x: element.x, y: element.y, width: element.width, height: element.height};
+                config["bounds"] = { x: element.x, y: element.y, width: element.width, height: element.height };
                 var renderConfig = {};
                 var group = element.render;
                 renderConfig["selectedIndex"] = group.selectedIndex;
@@ -2199,7 +2201,7 @@ export var DocumentGroup = /** @class */ (function (_super) {
         _this._root.style.overflow = 'hidden';
         _this._root.style.zIndex = '0';
         _this._layout = new BoxLayout();
-        _this._layout.init(_this.root, {useTabMenu: false});
+        _this._layout.init(_this.root, { useTabMenu: false });
         _this._layout.addBoxElementToRoot(new BoxLayoutElement());
         return _this;
     }
@@ -2575,8 +2577,8 @@ export var TabBar = /** @class */ (function (_super) {
     TabBar.prototype.optionEventHandle = function (e) {
         var _this = this;
         PopupMenu.popup(this.optionContainer, [
-            {label: "关闭", id: "close"},
-            {label: "关闭组", id: "closeall"}
+            { label: "关闭", id: "close" },
+            { label: "关闭组", id: "closeall" }
         ], function (id) {
             _this.dispatchEvent(new TabBarEvent(TabBarEvent.MENUSELECTED, id));
         });
@@ -2637,7 +2639,7 @@ export var TabBar = /** @class */ (function (_super) {
         this.root.remove();
     };
     TabBar.prototype.getBounds = function () {
-        return {x: this.bx, y: this.by, width: this.bw, height: this.bh};
+        return { x: this.bx, y: this.by, width: this.bw, height: this.bh };
     };
     TabBar.prototype.setBounds = function (x, y, width, height) {
         this.root.style.width = width + 'px';
@@ -3467,7 +3469,7 @@ export var TabPanelFocusManager = /** @class */ (function () {
                 return;
             }
         }
-        this.activeGroups.push({layout: panel.ownerGroup.ownerElement.ownerLayout, group: panel.ownerGroup});
+        this.activeGroups.push({ layout: panel.ownerGroup.ownerElement.ownerLayout, group: panel.ownerGroup });
     };
     TabPanelFocusManager.reSet = function () {
         this._foucsPanel = null;
@@ -3552,7 +3554,7 @@ export var DefaultTitleRender = /** @class */ (function () {
         this.updateTitleElementClassName();
     };
     DefaultTitleRender.prototype.getBounds = function () {
-        return {x: this.bx, y: this.by, width: this.root.offsetWidth, height: this.root.offsetHeight};
+        return { x: this.bx, y: this.by, width: this.root.offsetWidth, height: this.root.offsetHeight };
     };
     DefaultTitleRender.prototype.setBounds = function (x, y, width, height) {
         this.bx = x;
@@ -3806,8 +3808,12 @@ export var HeaderRender = /** @class */ (function () {
     return HeaderRender;
 }());
 export var HtmlElementResizeHelper = /** @class */ (function () {
+
     function HtmlElementResizeHelper() {
+        this._UseNative = true;
     }
+
+    HtmlElementResizeHelper._UseNative = true;
 
     Object.defineProperty(HtmlElementResizeHelper, "UseNative", {
         get: function () {
@@ -3830,6 +3836,7 @@ export var HtmlElementResizeHelper = /** @class */ (function () {
      */
     HtmlElementResizeHelper.watch = function (target) {
         HtmlElementResizeHelper._watched = true;
+        console.log('HtmlElementResizeHelper.UseNative', HtmlElementResizeHelper.UseNative);
         if (HtmlElementResizeHelper.UseNative) {
             NativeResizeHelper.watch(target);
         } else {
@@ -3854,7 +3861,7 @@ var LegacyResizeHelper = /** @class */ (function () {
      * 监视目标标签，如果尺寸发生变化目标标签将会抛出'resize'事件
      */
     LegacyResizeHelper.watch = function (target) {
-        this.listenList.push({w: target.offsetWidth, h: target.offsetHeight, target: target});
+        this.listenList.push({ w: target.offsetWidth, h: target.offsetHeight, target: target });
         this.startListen();
     };
     LegacyResizeHelper.unWatch = function (target) {
@@ -3883,7 +3890,7 @@ var LegacyResizeHelper = /** @class */ (function () {
             if (target.offsetWidth !== element['w'] || target.offsetHeight !== element['h']) {
                 element['w'] = target.offsetWidth;
                 element['h'] = target.offsetHeight;
-                target.dispatchEvent(new Event('resize'));
+                target.dispatchEvent(new window.Event('resize'));
             }
         });
     };
@@ -3908,7 +3915,7 @@ var NativeResizeHelper = /** @class */ (function () {
     NativeResizeHelper.fireResize = function (entries, observer) {
         entries.forEach(function (element) {
             var target = element.target;
-            target.dispatchEvent(new Event('resize'));
+            target.dispatchEvent(new window.Event('resize'));
         });
     };
     NativeResizeHelper.ro = null;

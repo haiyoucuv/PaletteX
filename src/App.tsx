@@ -13,19 +13,24 @@ function App() {
   useEffect(() => {
     if (!layoutRef.current) return;
     layoutRef.current.innerHTML = "";
+    
     const layout = new BoxLayout();
     layout.init(layoutRef.current, { useTabMenu: true });
     const renderer = new RendererPanel();
-    const tools = new ToolsPanel();
     layout.registPanel(renderer);
+
+    const tools = new ToolsPanel();
     layout.registPanel(tools);
+
     layout.applyLayoutConfig(defaultLayoutConfig);
+
 
     window['printConfig'] = () => {
       console.log(JSON.stringify(layout.getLayoutConfig(), null, 2));
     }
 
     return () => {
+      // window.removeEventListener('resize', handleResize);
       layout.closePanelById("RendererPanel");
       layout.closePanelById("ToolsPanel");
     };
