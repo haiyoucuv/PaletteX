@@ -1,15 +1,15 @@
 import { TabPanel } from '../boxlayout/boxlayout.js';
 import ReactDOM from 'react-dom/client';
-import LayerPanel from './LayerPanel';
+import PresetLibrary from './PresetLibrary.tsx';
 
-export class LayerPanelPanel extends TabPanel {
+export class PresetLibraryPanel extends TabPanel {
     constructor() {
         super();
-        this.setTitle('图层');
-        this.setId("LayerPanelPanel");
+        this.setTitle('预设库');
+        this.setId("PresetLibraryPanel");
     }
 
     renderContent(container: HTMLElement) {
-        ReactDOM.createRoot(container).render(<LayerPanel />);
+        ReactDOM.createRoot(container).render(<PresetLibrary />);
     }
 }

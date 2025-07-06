@@ -1,16 +1,21 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import styles from "./CanvasArea.module.less";
 import hotkeys from "hotkeys-js";
+import { useGlobalStore } from "../store/globalStore";
 
 const CanvasArea: React.FC = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const areaRef = useRef<HTMLDivElement>(null);
-    const [image, setImage] = useState<HTMLImageElement | null>(null);
     const [canvasSize, setCanvasSize] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
     const [dragActive, setDragActive] = useState(false);
     const [webgpuSupported, setWebgpuSupported] = useState<boolean | null>(true);
     const [scale, setScale] = useState(1);
     const [webgpuReady, setWebgpuReady] = useState(false);
+    const [showBeforeAfter, setShowBeforeAfter] = useState(false);
+
+    // 全局图片状态
+    const image = useGlobalStore(state => state.image);
+    const setImage = useGlobalStore(state => state.setImage);
 
     // WebGPU refs
     const deviceRef = useRef<any>(null);
@@ -135,8 +140,8 @@ const CanvasArea: React.FC = () => {
             });
             // 采样器
             const sampler = device.createSampler({
-                magFilter: "linear",
-                minFilter: "linear",
+                magFilter: "nearest",
+                minFilter: "nearest",
             });
             // 保存引用
             deviceRef.current = device;
@@ -250,7 +255,7 @@ const CanvasArea: React.FC = () => {
         const img = new Image();
         img.onload = () => setImage(img);
         img.src = URL.createObjectURL(file);
-    }, []);
+    }, [setImage]);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -298,6 +303,20 @@ const CanvasArea: React.FC = () => {
                 style={{ transform: `scale(${scale})`, display: image && canvasSize.width && canvasSize.height ? "block" : "none" }}
             />
         </div>
+        {/* 前后对比视图 */}
+        {showBeforeAfter && image && <div className={styles.beforeAfter}>
+            <div className={styles.beforeAfterTitle}>前后对比</div>
+            <div className={styles.beforeAfterContainer}>
+                <div className={styles.beforeImage}>
+                    <div className={styles.beforeLabel}>调整前</div>
+                    <div className={styles.imagePlaceholder}>原图</div>
+                </div>
+                <div className={styles.afterImage}>
+                    <div className={styles.afterLabel}>调整后</div>
+                    <div className={styles.imagePlaceholder}>调整后</div>
+                </div>
+            </div>
+        </div>}
         <div style={{ position: "absolute", top: 24, left: 24 }}>
             <label className={styles.uploadBtn}>
                 导入图片

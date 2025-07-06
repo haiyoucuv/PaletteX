@@ -85,3 +85,150 @@
   user-select: none;
   pointer-events: none;
 }
+
+// 调色软件特有的样式
+.colorToolbar {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(30, 30, 30, 0.9);
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 100;
+
+  .toolGroup {
+    display: flex;
+    gap: 4px;
+
+    .toolBtn {
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 4px;
+      color: #ffffff;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      &.active {
+        background: #007acc;
+        color: #ffffff;
+      }
+    }
+  }
+
+  .zoomInfo {
+    font-size: 12px;
+    color: #cccccc;
+    padding: 4px 8px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    min-width: 40px;
+    text-align: center;
+  }
+}
+
+.histogram {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background: rgba(30, 30, 30, 0.95);
+  border-radius: 8px;
+  padding: 12px;
+  min-width: 200px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 100;
+
+  .histogramTitle {
+    font-size: 12px;
+    color: #cccccc;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .histogramCanvas {
+    height: 80px;
+    background: #1a1a1a;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .histogramCanvasElement {
+      width: 100%;
+      height: 100%;
+      border-radius: 4px;
+    }
+
+    .histogramPlaceholder {
+      color: #666666;
+      font-size: 11px;
+    }
+  }
+}
+
+.beforeAfter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(30, 30, 30, 0.95);
+  border-radius: 12px;
+  padding: 16px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 100;
+  min-width: 400px;
+
+  .beforeAfterTitle {
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 12px;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .beforeAfterContainer {
+    display: flex;
+    gap: 16px;
+
+    .beforeImage,
+    .afterImage {
+      flex: 1;
+      text-align: center;
+
+      .beforeLabel,
+      .afterLabel {
+        font-size: 12px;
+        color: #cccccc;
+        margin-bottom: 8px;
+      }
+
+      .imagePlaceholder {
+        height: 120px;
+        background: #2a2a2a;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666666;
+        font-size: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+}

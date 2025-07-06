@@ -1,15 +1,15 @@
 import { TabPanel } from '../boxlayout/boxlayout.js';
 import ReactDOM from 'react-dom/client';
-import Toolbar from './Toolbar';
+import ColorTools from './ColorTools';
 
-export class ToolbarPanel extends TabPanel {
+export class ColorToolsPanel extends TabPanel {
     constructor() {
         super();
-        this.setTitle('工具栏');
-        this.setId("ToolbarPanel");
+        this.setTitle('调色工具');
+        this.setId("ColorToolsPanel");
     }
 
     renderContent(container: HTMLElement) {
-        ReactDOM.createRoot(container).render(<Toolbar />);
+        ReactDOM.createRoot(container).render(<ColorTools />);
     }
 } 
