@@ -3836,7 +3836,6 @@ export var HtmlElementResizeHelper = /** @class */ (function () {
      */
     HtmlElementResizeHelper.watch = function (target) {
         HtmlElementResizeHelper._watched = true;
-        console.log('HtmlElementResizeHelper.UseNative', HtmlElementResizeHelper.UseNative);
         if (HtmlElementResizeHelper.UseNative) {
             NativeResizeHelper.watch(target);
         } else {
